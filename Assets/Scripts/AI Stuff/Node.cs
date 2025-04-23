@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class Node
 {
     public Vector3 position;
+    public NodeTransform nodeTransform = new NodeTransform();
     //public List<Node> connectedNodes = new List<Node>();
     [HideInInspector]
     public List<Connection> connections = new List<Connection>();
@@ -48,6 +49,7 @@ public class Node
     public void Connect(Node other)
     {
         Connect(other, true);
+        Debug.Log("");
     }
 
     /// <summary>
