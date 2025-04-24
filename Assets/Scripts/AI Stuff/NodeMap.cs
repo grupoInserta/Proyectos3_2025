@@ -22,6 +22,8 @@ public class NodeMap : MonoBehaviour
     {
         Node newNode = new Node(position);
         nodes.Add(newNode);
+        newNode.nodeMap = this;
+        UpdateNodeIDs();
         return newNode;
     }
 
@@ -69,6 +71,7 @@ public class NodeMap : MonoBehaviour
         {
             node.Isolate(true);
             nodes.Remove(node);
+            UpdateNodeIDs();
         }
     }
     public void RemoveSelectedNode()
@@ -101,5 +104,18 @@ public class NodeMap : MonoBehaviour
     {
         return null;
     }
+
+    #region
+    public void UpdateNodeIDs()
+    {
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            if (nodes[i] != null && nodes[i].nodeData != null)
+            {
+                nodes[i].nodeData.id = i;
+            }
+        }
+    }
+    #endregion
 
 }

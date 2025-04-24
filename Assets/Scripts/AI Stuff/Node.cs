@@ -5,15 +5,22 @@ using System.Collections.Generic;
 public class Node
 {
     public Vector3 position;
-    public NodeTransform nodeTransform = new NodeTransform();
+    public NodeMap nodeMap; //The node map this node is contained in
+    public NodeData nodeData = new NodeData();
     //public List<Node> connectedNodes = new List<Node>();
-    [HideInInspector]
+    //[HideInInspector]
+    
     public List<Connection> connections = new List<Connection>();
     public Node(Vector3 pos)
     {
         position = pos;
     }
-    
+
+    public void OnValidate()
+    {
+        nodeData.position = position;
+    }
+
     public int Connections()
     {
         return connections.Count;
@@ -133,4 +140,12 @@ public class Node
     }
 
 
+}
+public class NodeData
+{
+    public int id;
+    public Vector3 position;
+    public Node node;
+    
+        
 }
